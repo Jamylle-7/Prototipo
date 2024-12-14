@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+<div>
+    <form action="/inserirusuario" method="post">
+        <a><b>Cadastrar Novo Usuário</b></a>
+        <hr>
+        <label>Nome</label>
+        <input type="text" name="nome" required>
+        <br>
+        <label>E-mail</label>
+        <input type="text" name="email" required>
+        <br>
+        <label>Senha</label>
+        <input type="password" id="senha" name="senha" required>
+        <br>
+        <label>Repetir senha</label>
+        <input type="password" id="senha2" name="senha2" required>
+        <br>
+        <button type="submit">Cadastrar</button>
+        <p id="mensagem">{{mensagem}}</p>
+    </form>
+    <a href="/pagelogin">LOGIN</a>
+</div>
+</body>
+</html>
