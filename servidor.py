@@ -1,4 +1,4 @@
-from flask import *
+from flask import Flask, render_template, request
 import dao
 
 app = Flask(__name__)
@@ -17,12 +17,9 @@ def inserir_user():
         msg = 'Usuário cadastrado com sucesso'
     else:
         msg = 'Problemas ao cadastrar usuário'
-    return render_template('user_page.html', mensagem=msg)
-
+    return render_template('register.html', mensagem=msg)
 
 @app.route('/login', methods=['POST'])
-
-
 def login():
     email = request.form.get('email')
     senha = request.form.get('senha')
@@ -34,7 +31,6 @@ def login():
     else:
         msg = 'Senha ou login incorretos'
         return render_template('login.html', msglogin=msg)
-
 
 @app.route('/pagelogin')
 def mostrar_page_login():
@@ -61,22 +57,42 @@ def calcular_imc():
     peso = float(peso)
     altura = float(altura)
     imc = peso / (altura ** 2)
-    return render_template('user_page.html', imc=imc)
+    imc_arredondado = round(imc, 2)
+    return render_template('user_page.html', imc=imc_arredondado)
 
 @app.route('/agua', methods=['POST'])
 def calcular_agua():
+    peso = request.form.get('peso')
+    if ',' in peso:
+        peso = peso.replace(',', '.')
     peso = float(request.form.get('peso'))
     agua = peso * 35
-    return render_template('user_page.html', agua=agua)
+    agua_arredondada = round(agua)
+    return render_template('user_page.html', agua=agua_arredondada)
 
-@app.route('/calcular', methods=['POST'])
-def calcular():
-    altura = float(request.form.get('altura'))
-    peso = float(request.form.get('peso'))
-    imc = calcular_imc(altura, peso)
-    agua = calcular_agua(peso)
-    return render_template('user_page.html', imc=imc, agua=agua)
+@app.route('/tbm', methods=['POST'])
+def calcular_tbm():
+    peso = request.form.get('peso')
+    if ',' in peso:
+        peso = peso.replace(',', '.')
+    altura = request.form.get('altura')
+    if ',' in altura:
+        altura = altura.replace(',', '.')
+    idade = request.form.get('idade')
+    sexo = request.form.get('sexo')
 
+    peso = float(peso)
+    altura = float(altura)
+    idade = int(idade)
 
+    if sexo == 'masculino':
+        tbm = 88.36 + (13.4 * peso) + (4.8 * altura) - (5.7 * idade)
+    else:
+        tbm = 447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * idade)
 
-app.run(debug=True)
+    tbm_arredondado = round(tbm, 2)
+
+    return render_template('user_page.html', tmb=tbm_arredondado)
+
+if __name__ == '__main__':
+    app.run(debug=True)

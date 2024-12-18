@@ -1,41 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Página do Usuário</title>
+    <link rel="stylesheet" href="../static/css/userpage.css">
 </head>
 <body>
 <h1>Bem Vindo, {{ user }}</h1>
 
-       <form action="/agua" method="post">
-           <a><b>Calcular Quantidade de Água Ideal</b></a>
-           <hr>
-           <label>Digite o seu peso (KG)</label>
-           <input type="text" name="peso" required>
-           <br>
-           <button type="submit">Calcular</button>
-       </form>
+<form action="/agua" method="post">
+    <a><b>Calcular Quantidade de Água Ideal</b></a>
+    <hr>
+    <label>Digite o seu peso (KG)</label>
+    <input type="text" name="peso" required>
+    <br>
+    <button type="submit">Calcular</button>
+</form>
 
-       <form action="/imc" method="post", >
-            <a><b>Calcular IMC</b></a>
-            <hr>
-            <label>Digite o seu peso (KG)</label>
-            <input type="text" name="peso" required>
-            <br>
-            <label>Digite a sua altura (M)</label>
-            <input type="text" name="altura" required>
-            <br>
-            <button type="submit">Calcular IMC</button>
-            <p id="mensagem">{{mensagem}} </p>
-       </form>
-       {% if agua %}
-            <h2>Você deve beber aproximadamente: {{ agua }} ml de água por dia</h2>
-       {% endif %}
+<form action="/imc" method="post">
+    <a><b>Calcular Índice de Massa Corporal (IMC)</b></a>
+    <hr>
+    <label>Digite o seu peso (KG)</label>
+    <input type="text" name="peso" required>
+    <br>
+    <label>Digite a sua altura (M)</label>
+    <input type="text" name="altura" required>
+    <br>
+    <button type="submit">Calcular IMC</button>
+    <p id="mensagem">{{ mensagem }}</p>
+</form>
 
-       {% if imc %}
-            <h2>Seu IMC é: {{ imc }}</h2>
-       {% endif %}
+<form action="/tbm" method="post">
+    <a><b>Calcular Taxa Metabólica Basal (TMB)</b></a>
+    <hr>
+    <label>Digite o seu peso (KG):</label>
+    <input type="text" name="peso" required>
+    <br>
+    <label>Digite a sua altura (M)</label>
+    <input type="text" name="altura" required>
+    <br>
+    <label>Digite a sua idade (anos):</label>
+    <input type="number" name="idade" required>
+    <br>
+    <label>Sexo:</label>
+    <select name="sexo" required>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+    </select>
+    <br>
+    <button type="submit">Calcular</button>
+</form>
 
+{% if agua %}
+    <h2>Você deve beber aproximadamente: {{ agua }} ml de água por dia</h2>
+{% endif %}
+
+{% if imc %}
+    <h2>Seu IMC é: {{ imc }}</h2>
+{% endif %}
+
+{% if tmb %}
+    <h2>Sua Taxa Metabólica Basal é: {{ tmb }}</h2>
+{% endif %}
 
 </body>
 </html>

@@ -36,16 +36,16 @@ def verificarlogin(email, senha):
     conexao.close()
     return recset
 
-
-def inseriraltpeso(altura,peso):
+def inserirdados(altura, peso, idade, sexo):
     conexao = conectardb()
     cur = conexao.cursor()
     exito = False
     try:
-        sql = f"UPDATE INTO usuarios (altura, peso) VALUES ('{altura}', '{peso}')"
+        sql = f"INSERT INTO usuarios (altura, peso, idade, sexo) VALUES ('{altura}', '{peso}', '{idade}', '{sexo}')"
         cur.execute(sql)
     except psycopg2.Error:
         conexao.rollback()
+        print(f"Erro ao inserir dados do usuário")
         exito = False
     else:
         conexao.commit()
@@ -61,3 +61,14 @@ def calcularimc(altura, peso):
     recset = cur.fetchall()
     cur.close()
     conexao.close()
+    return recset
+
+def calcular_tbm(altura, peso, idade, sexo):
+    conexao = conectardb()
+    cur = conexao.cursor()
+    cur.execute(f"SELECT altura, peso FROM usuarios WHERE altura= '{altura}' AND peso = '{peso}' AND idade = '{idade}' AND sexo = '{sexo}'")
+    recset = cur.fetchall()
+    cur.close()
+    conexao.close()
+    return recset
+
