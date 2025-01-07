@@ -27,6 +27,16 @@ def inserirusuario(email, nome, senha):
     conexao.close()
     return exito
 
+def usuario_existe(email):
+    conexao = conectardb()
+    cur = conexao.cursor()
+    cur.execute(f"SELECT email FROM usuarios WHERE email = '{email}'")
+    usuario = cur.fetchone()
+    cur.close()
+    conexao.close()
+    return usuario is not None
+
+
 def verificarlogin(email, senha):
     conexao = conectardb()
     cur = conexao.cursor()

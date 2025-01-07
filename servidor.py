@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import dao
 
 app = Flask(__name__)
+app.secret_key = '707070'
 
 @app.route('/')
 def home():
@@ -13,11 +14,15 @@ def inserir_user():
     senha = request.form.get('senha')
     nome = request.form.get('nome')
 
-    if dao.inserirusuario(email, nome, senha):
-        msg = 'Usuário cadastrado com sucesso'
+    if dao.usuario_existe(email):
+        msg = 'Usuário já possui cadastro'
     else:
-        msg = 'Problemas ao cadastrar usuário'
-    return render_template('register.html', mensagem=msg)
+        if dao.inserirusuario(email, nome, senha):
+           msg = 'Usuário cadastrado com sucesso'
+        else:
+           msg = 'Problemas ao cadastrar usuário'
+    return render_template('login.html', mensagem=msg)
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -32,6 +37,11 @@ def login():
         msg = 'Senha ou login incorretos'
         return render_template('login.html', msglogin=msg)
 
+@app.route('/sair')
+def fazer_logout():
+    session.pop('login')
+    return render_template('home.html')
+
 @app.route('/pagelogin')
 def mostrar_page_login():
     return render_template('login.html')
@@ -42,6 +52,8 @@ def mostrar_page_cadastrar():
 
 @app.route('/pageuser')
 def mostrar_page_user():
+    if len(resultado) > 0:
+        session['email'] = email
     return render_template('user_page.html')
 
 @app.route('/imc', methods=['POST'])

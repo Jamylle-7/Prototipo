@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
 <div class="novo">
-          <div class="login">
-              <form action="/login" method="post">
-                    <a><b>Login </b></a>
-                    <hr>
-                    <label>E-mail</label>
-                    <input type="text" name="email" required>
-                    <br>
-                    <label>Senha</label>
-                    <input type="password" name="senha" required>
-                    <br>
-                    <button type="submit">Enviar</button>
-
-              </form>
-              <p>{{msglogin}} </p>
-              <a href="/pagecadastrar">CADASTRAR</a>
-          </div>
-
-      </div>
-      </div>
-    <script src="../static/login.js"></script>
-
+    <div class="login">
+        <form class="login-form" action="/login" method="post">
+            <a><b>Fazer Login </b></a>
+            <hr>
+            <label>E-mail</label>
+            <input type="text" id="email" name="email" required>
+            <br>
+            <label>Senha</label>
+            <input type="password" id="password" name="senha" required>
+            <br>
+            <button type="submit">Enviar</button>
+        </form>
+        <p>{{msglogin}} </p>
+        <a href="/pagecadastrar">CADASTRAR</a>
+    </div>
+</div>
+<input type="hidden" id="mensagem" value="{{ mensagem }}">
+<script src= "../static/js/login.js"></script>
 </body>
 </html>
