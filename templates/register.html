@@ -5,7 +5,10 @@
     <link rel="stylesheet" href="../static/css/register.css">
 </head>
 <body>
-<div>
+<div class="container">
+    <div class="register-box">
+        <src="logo.png" alt="logo" class="logo">
+
     <form action="/inserirusuario" method="post">
         <a><b>Cadastrar Novo Usuário</b></a>
         <hr>
@@ -21,7 +24,10 @@
         <button type="submit">Cadastrar</button>
         <p id="mensagem">{{mensagem}}</p>
     </form>
-    <a href="/pagelogin">LOGIN</a>
+    <p class="back-to-login">Já tem uma conta? <a href="/pagelogin">Faça login</a></p>
+
+    </div>
 </div>
+
 </body>
 </html>

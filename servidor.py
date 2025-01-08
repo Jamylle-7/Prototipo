@@ -39,7 +39,7 @@ def login():
 
 @app.route('/sair')
 def fazer_logout():
-    session.pop('login')
+    session.pop('login',None)
     return render_template('home.html')
 
 @app.route('/pagelogin')
@@ -52,9 +52,11 @@ def mostrar_page_cadastrar():
 
 @app.route('/pageuser')
 def mostrar_page_user():
-    if len(resultado) > 0:
-        session['email'] = email
-    return render_template('user_page.html')
+    email = session.get('email')
+    if email:
+        return render_template('user_page.html', user=email)
+    else:
+        return render_template('login.html', msglogin='Por favor, faça login primeiro.')
 
 @app.route('/imc', methods=['POST'])
 def calcular_imc():

@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
-<div class="novo">
-    <div class="login">
+<div class="container">
+    <div class="login-box">
         <form class="login-form" action="/login" method="post">
             <a><b>Fazer Login </b></a>
             <hr>
@@ -19,8 +19,8 @@
             <br>
             <button type="submit">Enviar</button>
         </form>
-        <p>{{msglogin}} </p>
-        <a href="/pagecadastrar">CADASTRAR</a>
+        <p class="error-message">{{msglogin}} </p>
+        <p class="register-link">Ainda não possui conta? <a href="/pagecadastrar ">Cadastre-se!</a></p>
     </div>
 </div>
 <input type="hidden" id="mensagem" value="{{ mensagem }}">
