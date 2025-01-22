@@ -64,7 +64,7 @@ def inserirdados(altura, peso, idade, sexo):
     conexao.close()
     return exito
 
-def calcularimc(altura, peso):
+def 'calcularimc(altura, peso):
     conexao = conectardb()
     cur = conexao.cursor()
     cur.execute(f"SELECT altura, peso FROM usuarios WHERE altura= '{altura}' AND peso = '{peso}'")
