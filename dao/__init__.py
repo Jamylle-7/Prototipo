@@ -2,10 +2,10 @@ import psycopg2
 
 def conectardb():
     con = psycopg2.connect(
-        host='localhost',
-        database='+saude',
-        user='postgres',
-        password='12345'
+        host='dpg-cu8ghqogph6c73cpeo70-a.oregon-postgres.render.com',
+        database='data_base_ktmy',
+        user='data_base_ktmy_user',
+        password='7VE6S6zoQ1T7Ke8XIjIydkGWPUg4ekMB'
     )
     return con
 
@@ -64,7 +64,7 @@ def inserirdados(altura, peso, idade, sexo):
     conexao.close()
     return exito
 
-def 'calcularimc(altura, peso):
+def calcularimc(altura, peso):
     conexao = conectardb()
     cur = conexao.cursor()
     cur.execute(f"SELECT altura, peso FROM usuarios WHERE altura= '{altura}' AND peso = '{peso}'")
