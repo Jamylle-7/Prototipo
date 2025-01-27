@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/agua" method="post">
+    <a><b>Calcular Quantidade de Água Ideal</b></a>
+    <hr>
+    <label>Digite o seu peso (KG)</label>
+    <input type="text" name="peso" required>
+    <br>
+    <button type="submit">Calcular</button>
+</form>
+{% if agua %}
+    <h2>Você deve beber aproximadamente: {{ agua }} ml de água por dia</h2>
+{% endif %}
+
+</body>
+</html>

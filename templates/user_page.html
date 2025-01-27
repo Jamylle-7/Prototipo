@@ -7,62 +7,23 @@
 </head>
 <body>
 <h1>Bem Vindo, {{ user }}</h1>
-
-<form action="/agua" method="post">
-    <a><b>Calcular Quantidade de Água Ideal</b></a>
+<form action="/opcoes" method="post">
+    <h2><a><b>Quais funções você gostaria de explorar</b></a></h2>
     <hr>
-    <label>Digite o seu peso (KG)</label>
-    <input type="text" name="peso" required>
-    <br>
-    <button type="submit">Calcular</button>
+    <button type="submit">Cadastrar dados da saúde</button>
+    <hr>
+    <a href="/tmb"> <button type="submit">taxa metabolica </button> </a>
+    <hr>
+    <button type="submit">Nutrição <a href="/imc"></a></button>
+    <hr>
+    <button type="submit">água <a href="/tmb"></a></button>
+    <hr>
 </form>
 
-<form action="/imc" method="post">
-    <a><b>Calcular Índice de Massa Corporal (IMC)</b></a>
-    <hr>
-    <label>Digite o seu peso (KG)</label>
-    <input type="text" name="peso" required>
-    <br>
-    <label>Digite a sua altura (M)</label>
-    <input type="text" name="altura" required>
-    <br>
-    <button type="submit">Calcular IMC</button>
-    <p id="mensagem">{{ mensagem }}</p>
-</form>
 
-<form action="/tbm" method="post">
-    <a><b>Calcular Taxa Metabólica Basal (TMB)</b></a>
-    <hr>
-    <label>Digite o seu peso (KG):</label>
-    <input type="text" name="peso" required>
-    <br>
-    <label>Digite a sua altura (M)</label>
-    <input type="text" name="altura" required>
-    <br>
-    <label>Digite a sua idade (anos):</label>
-    <input type="number" name="idade" required>
-    <br>
-    <label>Sexo:</label>
-    <select name="sexo" required>
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-    </select>
-    <br>
-    <button type="submit">Calcular</button>
-</form>
 <a href="/sair">SAIR</a>
 
-{% if agua %}
-    <h2>Você deve beber aproximadamente: {{ agua }} ml de água por dia</h2>
-{% endif %}
 
-{% if imc %}
-    <h2>Seu IMC é: {{ imc }}</h2>
-{% endif %}
-
-{% if tmb %}
-    <h2>Sua Taxa Metabólica Basal é: {{ tmb }}</h2>
-{% endif %}
 
 </body>
 </html>

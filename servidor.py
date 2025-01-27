@@ -72,7 +72,7 @@ def calcular_imc():
     altura = float(altura)
     imc = peso / (altura ** 2)
     imc_arredondado = round(imc, 2)
-    return render_template('user_page.html', imc=imc_arredondado)
+    return render_template('imc.html', imc=imc_arredondado)
 
 @app.route('/agua', methods=['POST'])
 def calcular_agua():
@@ -82,7 +82,7 @@ def calcular_agua():
     peso = float(request.form.get('peso'))
     agua = peso * 35
     agua_arredondada = round(agua)
-    return render_template('user_page.html', agua=agua_arredondada)
+    return render_template('hidratacao.html', agua=agua_arredondada)
 
 @app.route('/tbm', methods=['POST'])
 def calcular_tbm():
@@ -106,7 +106,7 @@ def calcular_tbm():
 
     tbm_arredondado = round(tbm, 2)
 
-    return render_template('user_page.html', tmb=tbm_arredondado)
+    return render_template('tmb.html', tmb=tbm_arredondado)
 
 if __name__ == '__main__':
     app.run(debug=True)
