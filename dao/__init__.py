@@ -51,18 +51,20 @@ def inserirdados(altura, peso, idade, sexo, login):
     cur = conexao.cursor()
     exito = False
     try:
-        sql = f"INSERT INTO usuarios (altura, peso, idade, sexo, login) VALUES ('{altura}', '{peso}', '{idade}', '{sexo}', '{login}')"
+        cur.execute(f"SELECT email FROM usuarios WHERE email = '{login}'")
+        if not cur.fetchone():
+            print(f"Erro: login '{login}' não existe na tabela usuarios.")
+            return False
+
+        sql = f"INSERT INTO dados (altura, peso, idade, genero, login) VALUES ('{altura}', '{peso}', '{idade}', '{sexo}', '{login}')"
         cur.execute(sql)
-    except psycopg2.Error:
+    except psycopg2.Error as e:
         conexao.rollback()
-        print(f"Erro ao inserir dados do usuário")
+        print(f"Erro ao inserir dados do usuário: {e}")
         exito = False
     else:
         conexao.commit()
         exito = True
-
-    conexao.close()
-    return exito
 
 def calcularimc(altura, peso):
     conexao = conectardb()
@@ -86,9 +88,26 @@ def calcular_tbm(altura, peso, idade, sexo):
 def recuperar_dados_user(login):
     conexao = conectardb()
     cur = conexao.cursor()
-    cur.execute(f"SELECT altura, peso, idade, sexo FROM XXXXXX WHERE login = '{login}'")
+    cur.execute(f"SELECT altura, peso, idade, genero FROM dados WHERE login = '{login}'")
     recset = cur.fetchall()
     cur.close()
     conexao.close()
     return recset
 
+def adicionarmetas(login,metas):
+    conexao = conectardb()
+    cur = conexao.cursor()
+    exito = False
+    try:
+        sql = f"INSERT INTO metas (login, metas) VALUES ('{login}', '{metas}')"
+        cur.execute(sql)
+    except psycopg2.Error:
+        conexao.rollback()
+        print(f"Erro ao adicionar meta")
+        exito = False
+    else:
+        conexao.commit()
+        exito = True
+
+    conexao.close()
+    return exito

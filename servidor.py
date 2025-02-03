@@ -54,26 +54,24 @@ def mostrar_page_cadastrar():
 
 @app.route('/pageagua', methods=['GET','POST'])
 def mostrar_page_agua():
-    return render_template('hidratacao.html')
+    dados_user = dao.recuperar_dados_user(session['login'])
+    agua = float(dados_user[0][1]) * 35
+    return render_template('hidratacao.html', agua=agua)
 
 @app.route('/pageimc', methods=['GET','POST'])
 def mostrar_page_imc():
-    return render_template('imc.html')
+    dados_user = dao.recuperar_dados_user(session['login'])
+    peso = request.form.get('peso')
+    imc = float(dados_user[0][2]) / float(dados_user[0][1]) ** 2
+    return render_template('imc.html', imc=imc)
 
 @app.route('/pageddsaude', methods=['GET','POST'])
 def mostrar_page_ddsaude():
     return render_template('dados_saude.html')
 
-@app.route('/pagetmb', methods=['GET','POST'])
-def mostrar_page_tmb():
-    dados_user = dao.recuperar_dados_user(session['login'])
-    #fazer a parte de calcular
-    imc = dados_user[0] / dados_user[1]
-    return render_template('tmb.html', imc=imc)
-
-@app.route('/pagemetas', methods=['GET','POST'])
-def mostrar_page_metas():
-    return render_template('metas.html')
+@app.route('/pageaddmetas', methods=['GET','POST'])
+def mostrar_page_add_metas():
+    return render_template('addmetas.html')
 
 @app.route('/pageuser')
 def mostrar_page_user():
@@ -83,72 +81,38 @@ def mostrar_page_user():
     else:
         return render_template('login.html', msglogin='Por favor, faça login primeiro.')
 
-@app.route('/imc', methods=['POST'])
-def calcular_imc():
-    peso = request.form.get('peso')
-    if ',' in peso:
-        peso = peso.replace(',', '.')
-
-    altura = request.form.get('altura')
-    if ',' in altura:
-        altura = altura.replace(',', '.')
-
-    peso = float(peso)
-    altura = float(altura)
-    imc = peso / (altura ** 2)
-    imc_arredondado = round(imc, 2)
-    return render_template('imc.html', imc=imc_arredondado)
-
-@app.route('/agua', methods=['POST'])
-def calcular_agua():
-    peso = request.form.get('peso')
-    if ',' in peso:
-        peso = peso.replace(',', '.')
-    peso = float(request.form.get('peso'))
-    agua = peso * 35
-    agua_arredondada = round(agua)
-    return render_template('hidratacao.html', agua=agua_arredondada)
-
-@app.route('/tbm', methods=['POST'])
-def calcular_tbm():
-    peso = request.form.get('peso')
-    if ',' in peso:
-        peso = peso.replace(',', '.')
-    altura = request.form.get('altura')
-    if ',' in altura:
-        altura = altura.replace(',', '.')
-    idade = request.form.get('idade')
-    sexo = request.form.get('sexo')
-
-    peso = float(peso)
-    altura = float(altura)
-    idade = int(idade)
-
-    if sexo == 'masculino':
-        tbm = 88.36 + (13.4 * peso) + (4.8 * altura) - (5.7 * idade)
-    else:
-        tbm = 447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * idade)
-
-    tbm_arredondado = round(tbm, 2)
-
-    return render_template('tmb.html', tmb=tbm_arredondado)
-
 
 @app.route('/inserirdados', methods=['POST'])
 def inserir_dados():
-    altura = request.form.get('')
-    peso = request.form.get('')
-    alt = request.form.get('')
-    alt = request.form.get('')
-    login = session['login']
+    altura = request.form.get('altura')
+    peso = request.form.get('peso')
+    idade = request.form.get('idade')
+    sexo = request.form.get('sexo')
+    login = session.get('login')
 
-    if dao.inserirdados(altura,alt,alt,alt,login):
-        return render_template('userpage.html')
+
+    if dao.inserirdados(altura, peso, idade, sexo, login):
+        return render_template('user_page.html')
     else:
-        asdasd
+        return render_template('dados_saude.html', msgsaude='Erro ao inserir dados. Login não existe.')
 
 
+@app.route('/adicionarmetas', methods=['POST'])
+def adicionar_nova_meta():
+    meta = request.form.get('meta')
+    login = session.get('login')
 
+    if dao.adicionarmetas(login,meta):
+        return render_template('user_page.html')
+    else:
+        return render_template('add_meta.html', msgsaude='Erro ao inserir meta.')
+
+
+@app.route('/listar_metas')
+def listar_meta():
+    metas = session.get('meta')
+    login = session.get('login')
+    return render_template('listar_metas', metas=metas)
 
 if __name__ == '__main__':
     app.run(debug=True)
