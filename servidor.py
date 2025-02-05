@@ -1,6 +1,4 @@
-from flask import Flask, render_template, request, session, url_for
-from werkzeug.utils import redirect
-
+from flask import *
 import dao
 
 app = Flask(__name__)
@@ -44,6 +42,10 @@ def fazer_logout():
     session.pop('login', None)
     return render_template('home.html')
 
+@app.route('/voltar')
+def voltar():
+    return render_template('user_page.html')
+
 @app.route('/pagelogin')
 def mostrar_page_login():
     return render_template('login.html')
@@ -68,10 +70,6 @@ def mostrar_page_imc():
 @app.route('/pageddsaude', methods=['GET','POST'])
 def mostrar_page_ddsaude():
     return render_template('dados_saude.html')
-
-@app.route('/pageaddmetas', methods=['GET','POST'])
-def mostrar_page_add_metas():
-    return render_template('addmetas.html')
 
 @app.route('/pageuser')
 def mostrar_page_user():
@@ -103,16 +101,19 @@ def adicionar_nova_meta():
     login = session.get('login')
 
     if dao.adicionarmetas(login,meta):
-        return render_template('user_page.html')
+        return render_template('add_meta.html')
     else:
         return render_template('add_meta.html', msgsaude='Erro ao inserir meta.')
 
 
-@app.route('/listar_metas')
+@app.route('/listar_metas', methods=['POST'])
 def listar_meta():
-    metas = session.get('meta')
-    login = session.get('login')
-    return render_template('listar_metas', metas=metas)
+    login = session['login']
+    metas = dao.listarmetas(login)
+    if len(metas) > 0:
+        return render_template('listar_metas.html', metas=metas)
+    else:
+        return render_template('listar_meta.html', msgsaude='Erro ao listar meta.')
 
 if __name__ == '__main__':
     app.run(debug=True)

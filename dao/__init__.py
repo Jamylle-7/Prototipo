@@ -94,12 +94,12 @@ def recuperar_dados_user(login):
     conexao.close()
     return recset
 
-def adicionarmetas(login,metas):
+def adicionarmetas(login,meta):
     conexao = conectardb()
     cur = conexao.cursor()
     exito = False
     try:
-        sql = f"INSERT INTO metas (login, metas) VALUES ('{login}', '{metas}')"
+        sql = f"INSERT INTO meta (login, meta) VALUES ('{login}', '{meta}')"
         cur.execute(sql)
     except psycopg2.Error:
         conexao.rollback()
@@ -111,3 +111,15 @@ def adicionarmetas(login,metas):
 
     conexao.close()
     return exito
+
+def listarmetas(login):
+    conexao = conectardb()
+
+    cur = conexao.cursor()
+    cur.execute(f"SELECT meta FROM meta where login = '{login}'")
+    recset = cur.fetchall()
+    conexao.close()
+
+    return recset
+
+
