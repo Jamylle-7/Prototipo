@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="../static/css/listar.css">
+</head>
+<body>
+<div class="container">
+    <h2>Suas metas são:</h2>
+    {% for meta in metas %}
+        <p> {{meta[0]}}</p>
+    {% endfor %}
+<a href="/voltar" class="btn-back">VOLTAR</a>
+</div>
+</body>
+</html>

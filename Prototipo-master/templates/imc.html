@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/imc.css">
+</head>
+<body>
+<div class="container">
+{% if imc %}
+    <h2>Seu IMC é: {{ imc }}</h2>
+{% endif %}
+<a href="/voltar" class="btn-back">VOLTAR</a>
+</div>
+</body>
+</html>
