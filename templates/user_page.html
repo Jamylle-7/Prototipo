@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Página do Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userpage.css') }}">
+</head>
+<body>
+<h1>Bem Vindo, {{ user }}</h1>
+<form action="/opcoes" method="post">
+    <h2><b>Quais funções você gostaria de explorar?</b></h2>
+    <hr>
+    <button type="submit" formaction="/pageddsaude">Cadastrar dados da saúde</button>
+    <hr>
+    <button type="submit" formaction="/pageimc">Calcular Nutrição</button>
+    <hr>
+    <button type="submit" formaction="/pageagua">Calcular Hitratação</button>
+    <hr>
+    <button type="submit" formaction="/adicionarmetas">Adicionar Metas</button>
+    <hr>
+    <button type="submit" formaction="/listar_metas">Listar Metas</button>
+    <hr>
+</form>
+
+<a href="/sair">SAIR</a>
+</body>
+</html>

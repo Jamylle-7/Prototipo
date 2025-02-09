@@ -1,0 +1,342 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html{height: 100%;}
+
+.center{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+.clear{clear: both;}
+
+
+
+
+header{
+    background-color: #007DA6;
+    height: 70px;
+    padding-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+header .center{
+    padding: 0 4%;
+}
+
+.logo{
+    float: left;
+    color: white;
+}
+
+nav{
+    float: right;
+}
+
+.desktop {
+    padding-top: 5px;
+}
+
+.desktop a{
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.mobile{
+    display: none;
+}
+
+.mobile img{
+    cursor: pointer;
+    width: 35px;
+}
+
+.mobile .menu{
+    position: fixed;
+    right: -200px;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    max-width: 200px;
+    height: 100%;
+    padding: 20px 0;
+    border: 1px solid #007DA6;
+    transition: 0.4s;
+    z-index: 1000;
+}
+
+.mobile .menu a{
+    display: block;
+    color: #007DA6;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px 0;
+    transition: 0.5s;
+}
+
+.mobile .menu a:hover{
+    background-color: #5fd7ff28;
+}
+
+
+
+main{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.parte1{
+
+    background-image: url("../imgs/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.parte1 .center{
+    display: flex;
+    align-items: center;
+    padding: 40px 4%;
+}
+
+.texto-parte1{
+    width: 50%;
+    padding: 0 20px;
+}
+
+.texto-parte1 h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.texto-parte1 p{
+    text-align: justify;
+}
+
+.img-parte1{
+    width: 50%;
+    padding: 0 20px;
+}
+
+.img-parte1 img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+
+
+
+.parte2 .center{
+    max-width: 900px;
+    padding: 70px 4%;
+}
+
+.parte2 h2{
+    text-align: center;
+    margin-bottom: 40px;
+    color: #007DA6;
+}
+
+.v{
+    width: 100%;
+    border: 1px solid #007DA6;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    transition: 0.2s;
+}
+
+.v:hover{
+    transform: scale(1.005);
+    box-shadow: 20px 20px 30px -22px #007DA6;
+}
+
+.v img{
+    width: 40%;
+    border-radius: inherit;
+}
+
+.v h3{
+    text-align: center;
+    color: #007DA6;
+}
+
+.v p{
+    padding: 20px;
+    text-align: justify;
+}
+
+
+
+
+.parte3{
+    background-color: #12b0e463;
+}
+
+.parte3 .center{
+    max-width: 1100px;
+    padding: 60px 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fazer-curriculo{
+    width: 50%;
+    padding: 30px;
+    text-align: center;
+}
+
+.fazer-curriculo p{
+    text-align: justify;
+}
+
+.fazer-curriculo a{
+    text-decoration: none;
+    background-color: #007DA6;
+    color: white;
+    border-radius: 20px;
+    padding: 8px 30px;
+    display: inline-block;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+
+.fazer-curriculo a:hover{
+    transform: scale(1.07);
+    box-shadow: 10px 10px 10px -5px black;
+}
+
+.img-parte3{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-parte3 img{
+    width: 100%;
+}
+
+
+
+footer{
+    padding: 20px 4%;
+    background-color: #007DA6;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+
+
+.atalho-topo{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    transition: 0.2s;
+    display: none;
+}
+
+.atalho-topo img{
+    width: 100%;
+}
+
+.atalho-topo:hover{
+    transform: scale(1.4);
+}
+
+
+@media screen and (max-width: 767px) {
+
+
+    .desktop{display: none;}
+    .mobile{display: block;}
+
+
+    .texto-parte1 p{font-size: 15px;}
+
+
+    .fazer-curriculo{font-size: 15px;}
+}
+
+@media screen and (max-width: 667px) {
+
+
+    .v{
+        width: 100%;
+        display: block;
+        margin: 20px 0;
+        padding: 20px;
+        border: none;
+    }
+
+    .v:hover{
+        box-shadow: none;
+        transform: scale(1.070);
+    }
+
+    .v img{
+        display: block;
+        width: 250px;
+        margin: 0 auto;
+    }
+
+    .v p{
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+
+    .parte1 .center{
+        display: block;
+        padding: 40px 4%;
+    }
+
+    .texto-parte1{
+        width: 100%;
+        padding: 20px 20px;
+    }
+
+    .img-parte1{
+        width: 100%;
+        padding: 0 20px;
+    }
+
+
+    .parte3 .center{
+        display: block;
+    }
+
+    .fazer-curriculo{
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .img-parte3{
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+
+    .v p{font-size: 15px;}
+}
