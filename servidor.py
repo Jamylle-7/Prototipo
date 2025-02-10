@@ -63,13 +63,27 @@ def mostrar_page_agua():
 @app.route('/pageimc', methods=['GET','POST'])
 def mostrar_page_imc():
     dados_user = dao.recuperar_dados_user(session['login'])
-    peso = request.form.get('peso')
-    imc = float(dados_user[0][2]) / float(dados_user[0][1]) ** 2
-    return render_template('imc.html', imc=imc)
+    altura = float(dados_user[0][0])
+    peso = float(dados_user[0][1])
+    imc = peso / (altura * altura)
+    imc_arredondado = round(imc, 2)
+    return render_template('imc.html', imc=imc_arredondado)
 
-@app.route('/pageddsaude', methods=['GET','POST'])
+@app.route('/pageddsaude', methods=['GET', 'POST'])
 def mostrar_page_ddsaude():
-    return render_template('dados_saude.html')
+    altura = request.form.get('altura')
+    peso = request.form.get('peso')
+    idade = request.form.get('idade')
+    sexo = request.form.get('sexo')
+
+    login = session.get('login')
+
+    if dao.inserirdados(login, altura, peso, idade, sexo):
+        msg = 'Dados de saúde cadastrados com sucesso'
+    else:
+        msg = 'Problema ao cadastrar os dados de saúde'
+
+    return render_template('dados_saude.html', mensagem=msg)
 
 @app.route('/pageuser')
 def mostrar_page_user():

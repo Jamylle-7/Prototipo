@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dados da Saude</title>
     <link rel="stylesheet" href="../static/css/ddsaude.css">
 </head>
 <body>
@@ -23,11 +23,11 @@
         <input type="text" name="genero" required>
         <br>
         <button type="submit">Adicionar</button>
-        <p id="mensagem">{{mensagem}}</p>
 
 <a href="/voltar" class="btn-back">VOLTAR</a>
 </form>
 </div>
-<script src="../static/ddSaude.js"></script>
+<input type="hidden" id="mensagem" value="{{ mensagem }}">
+<script src="../static/js/ddSaude.js"></script>
 </body>
 </html>
