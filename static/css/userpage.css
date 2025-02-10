@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #007DA6;
+    color: #007DA6;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #FFFFFF;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    color: #FFFFFF;
+}
+
+a {
+    text-align: center;
+    text-decoration: none;
+    color: #12b0e463;
+}
+
+a:hover {
+    color: #12b0e463;
+}
+
+button {
+    display: block;
+    width: calc(100% - 40px);
+    margin: 10px auto;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #FFFFFF; /* cor da letra */
+    background-color: #12b0e463; /* cor de fundo do botão */
+    transition: background-color 0.3s ease;
+}
+
+button img.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    }
+
+button:hover {
+    background-color: #0056b3; /* cor de fundo do botão ao passar o mouse */
+}
+
+a[href="/sair"] {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: #f00505;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+a[href="/sair"]:hover {
+    background-color: #B71C1C;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cadastrar Usuário</title>
+    <link rel="stylesheet" href="../static/css/register.css">
+</head>
+<body>
+<div class="container">
+    <div class="register-box">
+        <src="logo.png" alt="logo" class="logo">
+
+    <form action="/inserirusuario" method="post">
+        <a><b>Cadastrar Novo Usuário</b></a>
+        <hr>
+        <label>Nome</label>
+        <input type="text" name="nome" required>
+        <br>
+        <label>E-mail</label>
+        <input type="email" name="email" required>
+        <br>
+        <label>Senha</label>
+        <input type="password" id="senha" name="senha" required>
+        <br>
+        <button type="submit">Cadastrar</button>
+        <p id="mensagem">{{mensagem}}</p>
+    </form>
+    <p class="back-to-login">Já tem uma conta? <a href="/pagelogin">Faça login</a></p>
+
+    </div>
+</div>
+
+</body>
+</html>

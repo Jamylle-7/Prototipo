@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/ddsaude.css">
+</head>
+<body>
+<div class="container">
+<form action="/inserirdados" method="post">
+        <h2>Adicionando Dados da Saúde</h2>
+        <hr>
+        <label>Qual a sua idade?</label>
+        <input type="text" name="idade" required>
+        <br>
+        <label>Qual a sua altura?</label>
+        <input type="text" name="altura" required>
+        <br>
+        <label>Qual o seu peso?</label>
+        <input type="number"  name="peso" required>
+        <br>
+        <label>Qual o seu gênero?</label>
+        <input type="text" name="genero" required>
+        <br>
+        <button type="submit">Adicionar</button>
+        <p id="mensagem">{{mensagem}}</p>
+
+<a href="/voltar" class="btn-back">VOLTAR</a>
+</form>
+</div>
+<script src="../static/ddSaude.js"></script>
+</body>
+</html>
