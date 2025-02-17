@@ -1,5 +1,6 @@
 from flask import *
 import dao
+from dao import inserirdados
 
 app = Flask(__name__)
 app.secret_key = '707070'
@@ -78,10 +79,11 @@ def mostrar_page_ddsaude():
 
     login = session.get('login')
 
+
     if dao.inserirdados(login, altura, peso, idade, sexo):
-        msg = 'Dados de saúde cadastrados com sucesso'
+            msg = 'Dados de saúde cadastrados com sucesso'
     else:
-        msg = 'Problema ao cadastrar os dados de saúde'
+            msg = 'Problema ao cadastrar os dados de saúde'
 
     return render_template('dados_saude.html', mensagem=msg)
 
