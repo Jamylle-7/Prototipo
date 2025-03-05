@@ -2,10 +2,10 @@ import psycopg2
 
 def conectardb():
     con = psycopg2.connect(
-        host='dpg-cu8ghqogph6c73cpeo70-a.oregon-postgres.render.com',
-        database='data_base_ktmy',
-        user='data_base_ktmy_user',
-        password='7VE6S6zoQ1T7Ke8XIjIydkGWPUg4ekMB'
+        host='dpg-cuubdkggph6c73acjddg-a.oregon-postgres.render.com',
+        database='saude_0gc1',
+        user='saude_0gc1_user',
+        password='scNMpmGKPoMb6XROwalNn8MCzdG5vvhk'
     )
     return con
 
